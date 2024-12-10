@@ -1,0 +1,37 @@
+<nav>
+    <ul class="nav-links">
+        <li><a href="index.html">점심</a></li>
+        <li><a href="dinner.html">저녁</a></li>
+        <li><a href="midnight.html">야식</a></li>
+        
+    </ul>
+    <ul class="auth-links">
+        <il><i class="fas fa-phone"></i> <span>+82 10-6219-9958</span></il>
+        <li><i class="fab fa-instagram"></i><span>s.yunniii</span></li>
+        <li><a href="login.html" class="btn btn-login" id="login-button">Login</a></li>
+        <li><a href="signup.html" class="btn btn-signup" id="signup-button">Sign Up</a></li>
+    </ul>
+</nav>
+<script>
+    $(document).ready(function(){
+            const userid = localStorage.getItem('userid');
+
+            if(userid){
+                $('#userid').text(`${userid}님 `);
+
+                console.log($('#aaa').text());
+                $('#login-button').text(`LogOut`);
+                $('#login-button').attr('href','#');
+
+                $('#login-button').click(function(event){
+                    event.preventDefault();
+                    localStorage.removeItem('userid');
+                    localStorage.removeItem('password')
+                    window.location.href = 'index.html';
+                });
+            }else{
+                $('#login-button').text('Login');
+                $('#login-button').attr('href','login.html');
+            }
+        });
+</script>

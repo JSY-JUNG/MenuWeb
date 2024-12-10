@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>메뉴추천</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="js/script.js"></script>
+    </head>
+<body>
+    <!-- 공통 components nav 들고오기 -->
+    <div id="nav"></div>
+
+    <!-- 메인 -->
+    <main>
+        <form id="login-form" class="form-container">
+            <label for="userid">ID</label>
+            <input type="text" id="userid" name="userid" placeholder="Enter your userid" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit" class="btn">Login</button>
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </form>
+    </main>
+
+    <!-- 공통 components footer 들고오기 -->
+    <div id="footer"></div>
+    
+    <script>
+        $(document).ready(function(){
+            $('#nav').load('components/nav.html'); // header 불러오기
+            $('#footer').load('components/footer.html'); // footer 불러오기
+
+            $('#login-form').submit(function(event) {
+                event.preventDefault();
+
+                const userid = $('#userid').val();
+                const password = $('#password').val();
+
+
+                const checkuserid = localStorage.getItem('SignUpuserid');
+                const checkpassword = localStorage.getItem('password');
+
+                if(userid === checkuserid && password === checkpassword){
+                    localStorage.setItem('userid', userid);
+                    window.location.href = 'index.html';
+                }else{
+                    alert('비밀번호 혹은 아이디가 잘못입력되었습니다.');
+                    window.location.href = 'login.html'; 
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
